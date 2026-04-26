@@ -26,8 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${inter.variable} h-full antialiased`}>
-      <head>
-        {/* Meta Pixel — carga después de interactividad para no bloquear LCP */}
+      <body className="min-h-full flex flex-col bg-[#0A0A0F] text-white">
+        {children}
+        <WhatsAppButton />
+        {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`!function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -41,7 +43,6 @@ fbq('init','${FB_PIXEL_ID}');
 fbq('track','PageView');`}
         </Script>
         <noscript>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             height="1"
             width="1"
@@ -50,10 +51,6 @@ fbq('track','PageView');`}
             alt=""
           />
         </noscript>
-      </head>
-      <body className="min-h-full flex flex-col bg-[#0A0A0F] text-white">
-        {children}
-        <WhatsAppButton />
       </body>
     </html>
   )
