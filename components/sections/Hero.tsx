@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { ChevronDown } from "lucide-react"
+import { fbqTrack } from "@/lib/meta-pixel"
 
 // ─── Header ────────────────────────────────────────────────────────────────
 
@@ -38,6 +39,7 @@ function Header() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={showCta ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.2 }}
+          onClick={() => fbqTrack("Lead", { content_name: "header_cta" })}
           className="inline-flex items-center justify-center rounded-lg bg-[#00F5C4] px-4 py-2 text-sm font-bold text-[#0A0A0F] transition-all hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00F5C4] pointer-events-auto"
           style={{ pointerEvents: showCta ? "auto" : "none" }}
         >
@@ -155,6 +157,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             custom={0.7}
+            onClick={() => fbqTrack("Lead", { content_name: "hero_cta" })}
             className="mt-2 inline-flex w-full items-center justify-center rounded-xl bg-[#00F5C4] px-8 py-4 text-base font-bold text-[#0A0A0F] shadow-[0_0_30px_rgba(0,245,196,0.25)] transition-all hover:shadow-[0_0_40px_rgba(0,245,196,0.4)] hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00F5C4] sm:w-auto sm:min-w-[320px] min-h-[52px]"
           >
             Quiero mi demo gratis de 15 días →

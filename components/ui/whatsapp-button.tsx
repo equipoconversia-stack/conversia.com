@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { fbqTrack } from "@/lib/meta-pixel"
 
 const WA_NUMBER = "5493517732460"
 const WA_MESSAGE = encodeURIComponent("Hola, quiero saber más sobre ConversIA")
@@ -27,6 +28,7 @@ export function WhatsAppButton() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contactar por WhatsApp"
+          onClick={() => fbqTrack("Contact", { content_name: "whatsapp_button" })}
           initial={{ opacity: 0, scale: 0.7 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.7 }}

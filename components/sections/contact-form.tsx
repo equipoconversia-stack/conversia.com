@@ -8,6 +8,7 @@ import { Loader2, ArrowRight, ArrowLeft } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { submitLead } from "@/app/actions/submit-lead"
 import { SectionWrapper } from "@/components/ui/section-wrapper"
+import { fbqTrack } from "@/lib/meta-pixel"
 
 // ─── Schema ──────────────────────────────────────────────────────────────────
 
@@ -104,7 +105,12 @@ export function ContactForm() {
         else formData.append(key, String(val))
       })
       const result = await submitLead(null, formData)
-      setStatus(result?.success ? "success" : "error")
+      if (result?.success) {
+        fbqTrack("CompleteRegistration")
+        setStatus("success")
+      } else {
+        setStatus("error")
+      }
     } catch {
       setStatus("error")
     }
