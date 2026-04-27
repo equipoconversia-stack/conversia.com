@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: "ConversIA | Automatizá tu Atención al Cliente con IA",
   description:
     "Agentes de IA que atienden, califican y cierran ventas por vos, las 24hs.",
+  other: {
+    "facebook-domain-verification": "9g1y0vgjcfxgnkcnc3dqigzvs1yxb1",
+  },
 }
 
 export default function RootLayout({
