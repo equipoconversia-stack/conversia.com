@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { fbqTrack } from "@/lib/meta-pixel"
 
 interface VideoVSLProps {
   videoId: string
@@ -16,11 +17,11 @@ export function VideoVSL({ videoId }: VideoVSLProps) {
       style={{
         boxShadow: "0 0 40px rgba(108, 99, 255, 0.2), 0 0 0 1px rgba(108, 99, 255, 0.15)",
       }}
-      onClick={() => setIsLoaded(true)}
+      onClick={() => { setIsLoaded(true); fbqTrack("ViewContent", { content_name: "vsl_video" }) }}
       role="button"
       tabIndex={0}
       aria-label="Reproducir video de ConversIA"
-      onKeyDown={(e) => e.key === "Enter" && setIsLoaded(true)}
+      onKeyDown={(e) => { if (e.key === "Enter") { setIsLoaded(true); fbqTrack("ViewContent", { content_name: "vsl_video" }) } }}
     >
       <div className="aspect-video w-full bg-[#12121A]">
         {!isLoaded ? (
